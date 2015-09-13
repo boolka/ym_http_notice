@@ -16,6 +16,10 @@
     "test": "mocha"
   },
   "license": "MIT",
+  "repository":{
+    "type" : "git",
+    "url" : "https://github.com/boolka/ym_http_notice"
+  },
   "author": {
     "name": "Ragim Ibragimov",
     "email": "boolka989@gmail.com",
