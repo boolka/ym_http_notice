@@ -1,4 +1,5 @@
-# Yandex money transfer system by http protocol
+# Accept payments online via Yandex
+
 docs: https://money.yandex.ru/doc.xml?id=527069
 
 ### Installation
@@ -9,6 +10,8 @@ $ npm i ym_http_notice
 ### Example
 
     var ym_http_notice = require("./ym_http_notice");
+
+    // ... get express instance somehow
 
 	app.post("/payment",
 		ym_http_notice(global.secret, checkOrder, paymentAviso)

@@ -1,8 +1,9 @@
 {
   "name": "ym_http_notice",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "index.js",
-  "description": "Yandex money notice system via HTTP. Represented by express middleware",
+  "keywords": ["yandex", "money", "cash", "nodejs", "http", "notice"],
+  "description": "The express/connect-style middleware for receiving and processing messages from Yandex cash system via http protocol",
   "dependencies": {
     "xml": "^1.0.0"
   },
@@ -24,10 +25,5 @@
     "name": "Ragim Ibragimov",
     "email": "boolka989@gmail.com",
     "url": "https://github.com/boolka"
-  },
-  "readme": "# Yandex money transfer system by http protocol\ndocs: https://money.yandex.ru/doc.xml?id=527069\n\n### Installation\n\n```sh\n$ npm i ym_http_notice\n```\n### Example\n\n    var ym_http_notice = require(\"./ym_http_notice\");\n\n\tapp.post(\"/payment\",\n\t\tym_http_notice(global.secret, checkOrder, paymentAviso)\n\t);\n\n\tfunction checkOrder (body, recall){\n        // body contains all parsed fields from request(e.g. shopId, customerNumber, etc)\n        // do some stuff with body and then\n        recall(null, false);\n        // or recall(err); if error (with or without message and techMessage)\n\t}\n\n\tfunction paymentAviso (body, recall){\n        // The same\n\t\trecall(null, true);\n\t}\n\nLicense\n----\n\nMIT\n",
-  "readmeFilename": "README.md",
-  "_id": "ym_http_notice@0.0.1",
-  "_shasum": "c2ec70a76d02834f01042e7bd54f667339505722",
-  "_from": "ym_http_notice@*"
+  }
 }

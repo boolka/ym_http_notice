@@ -4,18 +4,20 @@ var reqChecksum 	= require("./lib/req_checksum.js"),
 	xmlRes			= require("./lib/xml_response.js");
 
 /**
-* Yandex money http module is express style middleware
+* @arg {string} secret - the secret word specified during registration
+* @arg {function} checkOrderCb - invoked when comes the checkOrder request
+* 	arguments:
+* 		err - if error occurred
+* 		isGranted - tells if the permission is granted
+* 		message - the error reason
+* 		techMessage - additional information on error
 *
-* secret - the secret word specified during registration
+* @arg {function} paymentAvisoCb - invoked when comes the paymentAvisoCb request
+*	arguments:
+* 		err - if error occurred
 *
-* checkOrderCb - invoked when comes the checkOrder request
-* it has the following arguments
-* 	err - if error occurred
-* 	isGranted - tells if the permission is granted
-* 	message - the error reason
-* 	techMessage - additional information on error
-* paymentAvisoCb - invoked when comes the paymentAvisoCb request
-* 	err - if error occurred
+* @returns {function} express/connect-style middleware
+*
 */
 
 module.exports = function (secret, checkOrderCb, paymentAvisoCb){
@@ -24,9 +26,9 @@ module.exports = function (secret, checkOrderCb, paymentAvisoCb){
 
 		var performedDatetime = new Date().toISOString();
 
-		if( !("body" in req) ){
+		if( !("body" in req) || req.body.toString().slice(1,7) !== "object" ){
 
-			throw new TypeError("req.body is undefined");
+			throw new TypeError("req.body type mismatch");
 		}
 
 		res.type("application/xml");
